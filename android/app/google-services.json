@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418381138784",
+    "project_id": "ferdinand-coffee-51ece",
+    "storage_bucket": "ferdinand-coffee-51ece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418381138784:android:a057cb8f291891cd74ac05",
+        "android_client_info": {
+          "package_name": "com.ferdinand.ferdinand_coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418381138784-das8m3ia12m0h4cnfpv32j57uu1gk8od.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBUl-rJXfApAOGLBRmqYF2ZC2CiwSG_yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418381138784-das8m3ia12m0h4cnfpv32j57uu1gk8od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
