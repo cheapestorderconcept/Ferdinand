@@ -47,12 +47,15 @@ class _ManageProductState extends State<ManageProduct> {
       controllers.add(TextEditingController(text: productVariants[i].name));
       variantPrice
           .add(TextEditingController(text: '${productVariants[i].price}'));
+      priceWithVat.add(
+          TextEditingController(text: '${productVariants[i].priceWithVat}'));
     }
     super.initState();
   }
 
   List<TextEditingController> controllers = [];
   List<TextEditingController> variantPrice = [];
+  List<TextEditingController> priceWithVat = [];
   List<Map<String, ProductVariants>>? data;
   @override
   Widget build(BuildContext context) {
@@ -145,37 +148,57 @@ class _ManageProductState extends State<ManageProduct> {
                               controller: controllers[index],
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter product name';
+                                  return 'Please enter Variantenname';
                                 }
                                 return null;
                               },
-                              labelText: 'Variant $index name',
+                              labelText: 'Variantenname',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: CustomFormField(
-                              controller: variantPrice[index],
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter product name';
-                                }
-                                return null;
-                              },
-                              labelText: 'Variants $index price',
-                            ),
+                                controller: variantPrice[index],
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Bitte Produktpreis ohne MwSt. eingeben';
+                                  }
+                                  return null;
+                                },
+                                labelText: AppLocalizations.of(context)!
+                                    .priceWithoutVat),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: CustomFormField(
+                                controller: priceWithVat[index],
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Bitte Produktpreis zzgl. MwSt. eingeben';
+                                  }
+                                  return null;
+                                },
+                                labelText:
+                                    AppLocalizations.of(context)!.priceWithVat),
                           ),
                           MainSubmitButton(
-                              function: () {
-                                productVariants[index] = ProductVariants(
-                                  name: controllers[index].text,
-                                  price: int.parse(variantPrice[index].text),
-                                );
-                                displayToast(Colors.green, Colors.white,
-                                    'Variants Updated. Click on update product button to save');
-                              },
-                              buttonlabel:
-                                  AppLocalizations.of(context)!.updateVariants)
+                            function: () {
+                              print(priceWithVat[index].text);
+                              productVariants[index] = ProductVariants(
+                                name: controllers[index].text,
+                                price: num.parse(
+                                  variantPrice[index].text,
+                                ),
+                                priceWithVat: num.parse(
+                                  priceWithVat[index].text,
+                                ),
+                              );
+                              displayToast(Colors.green, Colors.white,
+                                  'Variants Updated. Click on update product button to save');
+                            },
+                            buttonlabel:
+                                AppLocalizations.of(context)!.updateVariants,
+                          )
                         ],
                       );
                     }),
@@ -213,6 +236,7 @@ class _ManageProductState extends State<ManageProduct> {
                   ),
                   CustomButton(
                       onTap: () {
+                        print(productVariants.map((e) => e.toJson()).toList());
                         if (_formKey.currentState!.validate()) {
                           UpdateProductapi _updateProduct = UpdateProductapi();
                           _updateProduct.updateProduct(

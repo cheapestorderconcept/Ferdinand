@@ -77,18 +77,21 @@ class Product {
 class ProductVariants {
   String? name;
   num? price;
+  num? priceWithVat;
 
-  ProductVariants({this.name, this.price});
+  ProductVariants({this.name, this.price, required this.priceWithVat});
 
   ProductVariants.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     price = json['price'];
+    priceWithVat = json['priceWithVat'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['price'] = price;
+    data['priceWithVat'] = priceWithVat;
     return data;
   }
 }

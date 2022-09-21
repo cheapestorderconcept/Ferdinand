@@ -57,7 +57,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
               height: 20,
             ),
             ...items.values.map((e) {
-              final vat = e.vat!;
+              final vat = e.productVat! * e.productQty!;
               return Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 padding: const EdgeInsets.only(left: 10, bottom: 15, right: 4),
@@ -105,13 +105,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                         fontSize: 13,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  const SizedBox(width: 20),
-                                  Text(
-                                    'Vat: ${vat.toStringAsFixed(2)}',
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600),
+                                  const SizedBox(width: 5),
+                                  SizedBox(
+                                    height: 100,
+                                    child: Column(children: [
+                                      Text(
+                                        '${vat.toStringAsFixed(2)}% Mwst',
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ]),
                                   ),
                                 ],
                               )
@@ -214,9 +219,17 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   final total = context.read<CartProvider>().totalAmount;
                   final totalAmountToPay = total < 150
                       ? Constants.postalCode.contains(shippingInfo?.zipCode)
-                          ? context.read<CartProvider>().totalAmount + 8
-                          : context.read<CartProvider>().totalAmount + 10
-                      : context.read<CartProvider>().totalAmount + 0;
+                          ? num.parse(context
+                                  .watch<CartProvider>()
+                                  .totalAmount
+                                  .toStringAsFixed(2)) +
+                              8
+                          : context.read<CartProvider>().totalAmount + 0
+                      : num.parse(context
+                              .watch<CartProvider>()
+                              .totalAmount
+                              .toStringAsFixed(2)) +
+                          0;
                   final cartProducts =
                       items.values.map((e) => e.toJson()).toList();
                   PaymentApi paymentApi = PaymentApi();

@@ -101,6 +101,8 @@
    "instructionOne":"Collect the litter around you.",
    "acceptTask":"Accept task",
    "rejectTask":"Reject task",
+   "priceWithoutVat":"Price without vat",
+    "priceWithVat":"Price with vat",
    "taskVideo":"Task video",
    "pauseVideo":"Pause video",
    "playVideo":"Play video",

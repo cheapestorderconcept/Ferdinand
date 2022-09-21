@@ -53,10 +53,10 @@ class CartProvider extends ChangeNotifier {
     return {..._items};
   }
 
-  get totalAmount {
+  num get totalAmount {
     num total = 0;
     _items.forEach((key, value) {
-      total += value.vat! + value.totalPrice!;
+      total += value.totalPrice!;
     });
     return total;
   }

@@ -33,7 +33,7 @@ class Checkout extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Shipping to',
+                const Text('Shipping to',
                     style: TextStyle(color: Colors.white, fontSize: 16)),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

@@ -24,6 +24,7 @@ String? productPicture;
 String? productVat;
 String? variantsName;
 String? variantsPrice;
+String? priceWithVat;
 
 class ProductAddingPage extends StatefulWidget {
   static const routeName = "/add-product";
@@ -106,13 +107,14 @@ class _ProductAddingPageState extends State<ProductAddingPage> {
                     height: 15,
                   ),
                   CustomFormField(
-                    inputType: TextInputType.number,
+                    inputType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     onChanged: (value) {
                       productVat = value;
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter procuct type';
+                        return 'Please enter product type';
                       }
                       return null;
                     },
@@ -143,18 +145,30 @@ class _ProductAddingPageState extends State<ProductAddingPage> {
                   ),
                   const SizedBox(height: 15),
                   CustomFormField(
-                    inputType: TextInputType.number,
+                    inputType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     onChanged: (v) {
                       variantsPrice = v;
                     },
-                    labelText: AppLocalizations.of(context)!.variantPrice,
+                    labelText: AppLocalizations.of(context)!.priceWithoutVat,
                   ),
+                  const SizedBox(height: 15),
+                  CustomFormField(
+                      inputType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      onChanged: (v) {
+                        priceWithVat = v;
+                      },
+                      labelText: AppLocalizations.of(context)!.priceWithVat),
                   const SizedBox(height: 15),
                   MainSubmitButton(
                     function: () {
                       final variants = ProductVariants(
                         name: variantsName,
                         price: double.parse('$variantsPrice'),
+                        priceWithVat: double.parse(
+                          '$priceWithVat',
+                        ),
                       );
                       context
                           .read<AddProductProviderAdmin>()
@@ -240,14 +254,15 @@ class _ProductAddingPageState extends State<ProductAddingPage> {
                         if (_formKey.currentState!.validate()) {
                           AddProductToStore store = AddProductToStore();
                           store.addProduct(
-                              productName,
-                              productPrice,
-                              productPicture,
-                              variants,
-                              productDesc,
-                              aboutProduct,
-                              productVat,
-                              context);
+                            productName,
+                            productPrice,
+                            productPicture,
+                            variants,
+                            productDesc,
+                            aboutProduct,
+                            productVat,
+                            context,
+                          );
                         }
                       }
                     },

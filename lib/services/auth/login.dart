@@ -20,12 +20,15 @@ class Loginuser {
       bool? isEnglish = prefs.getBool("isEnglish");
       EasyLoadingIndicator.showProgres();
       NetworkProvider httpRequest = NetworkProvider();
-      Response response =
-          await httpRequest.call('/client/login', RequestMethod.post, data: {
-        'email': email,
-        'password': password,
-        "language": isEnglish != null && isEnglish == true ? "en" : "DE"
-      });
+      Response response = await httpRequest.call(
+        '/client/login',
+        RequestMethod.post,
+        data: {
+          'email': email,
+          'password': password,
+          "language": isEnglish != null && isEnglish == true ? "en" : "DE"
+        },
+      );
       String token = response.data['data']['token'];
       ProfileModel profileModel =
           ProfileModel.fromJson(response.data["data"]["existingUser"]);

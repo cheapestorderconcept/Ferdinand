@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                                             product[index].productName,
                                         "productPrice": product[index]
                                             .productVariants?[0]
-                                            .price,
+                                            .priceWithVat,
                                         "productDesc":
                                             product[index].productDescription,
                                         "aboutProduct":
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                                 '${Constants.baseUrl}/admin/download-image/${product[index].productPictures}/${Constants.imageBucket}',
                             productName: product[index].productName,
                             productPrice:
-                                '${product[index].productVariants?[0].price}',
+                                '${product[index].productVariants?[0].priceWithVat}',
                             productId: product[index].sId,
                           );
                         },
@@ -239,7 +239,7 @@ class _HomePageState extends State<HomePage> {
                                 '${Constants.baseUrl}/admin/download-image/${product?[index].productPictures}/${Constants.imageBucket}',
                             productName: product?[index].productName,
                             productPrice:
-                                '${product?[index].productVariants?[0].price}',
+                                '${product?[index].productVariants?[0].priceWithVat}',
                             onTap: () {
                               if (currentUser?.role ==
                                   ProfileModel.clientrole) {

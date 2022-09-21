@@ -56,7 +56,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'CHF: ${context.watch<CartProvider>().totalAmount}',
+                            'CHF: ${context.watch<CartProvider>().totalAmount.toStringAsFixed(2)}',
                             // textDirection: TextDirection.ltr,
                             style: const TextStyle(
                                 fontSize: 12,
@@ -99,8 +99,9 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          //making deliver free irrespective of amount purchased
                           Text(
-                            'CHF ${totalAmount < 150 ? Constants.postalCode.contains(shippingInfo?.zipCode) ? '8' : '10' : '0'}',
+                            'CHF ${totalAmount < 150 ? Constants.postalCode.contains(shippingInfo?.zipCode) ? '0' : '0' : '0'}',
                             textAlign: TextAlign.end,
                             // textDirection: TextDirection.ltr,
                             style: const TextStyle(
@@ -199,7 +200,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '${totalAmount < 150 ? Constants.postalCode.contains(shippingInfo?.zipCode) ? context.watch<CartProvider>().totalAmount + 8 : context.watch<CartProvider>().totalAmount + 10 : context.watch<CartProvider>().totalAmount + 0}',
+                            '${totalAmount < 150 ? Constants.postalCode.contains(shippingInfo?.zipCode) ? num.parse(context.watch<CartProvider>().totalAmount.toStringAsFixed(2)) + 0 : num.parse(context.watch<CartProvider>().totalAmount.toStringAsFixed(2)) + 0 : num.parse(context.watch<CartProvider>().totalAmount.toStringAsFixed(2)) + 0}',
                             // textDirection: TextDirection.ltr,
                             style: const TextStyle(
                                 fontSize: 12,

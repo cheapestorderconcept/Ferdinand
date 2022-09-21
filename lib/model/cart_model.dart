@@ -6,6 +6,7 @@ class CartModel {
   String? image;
   num? totalPrice;
   num? itemPrice;
+  num? priceWithVat;
   num? vat;
   String? itemId;
   num? productVat;
@@ -16,6 +17,7 @@ class CartModel {
       this.productName,
       this.productVat,
       this.itemPrice,
+      this.priceWithVat,
       this.productQty,
       this.productType,
       this.totalPrice,
@@ -27,6 +29,7 @@ class CartModel {
   CartModel.fromJson(Map<String, dynamic> json) {
     productId = json["product_id"];
     image = json["image"];
+    priceWithVat = json['priceWithVat'];
     vat = json["vat"];
     productVat = json["vat"];
     productType = json["product_type"];
@@ -46,6 +49,7 @@ class CartModel {
     data["item_price"] = itemPrice;
     data["product_name"] = productName;
     data["product_price"] = totalPrice;
+    data['priceWithVat'] = priceWithVat;
 
     return data;
   }

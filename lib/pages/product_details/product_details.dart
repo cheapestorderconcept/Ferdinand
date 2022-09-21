@@ -24,6 +24,7 @@ class ProductDetailsPage extends StatefulWidget {
 bool is500g = true;
 num? productPrice;
 String? productType;
+int currentItemSelected = 0;
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
@@ -142,12 +143,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                     widget
                                         .productDetails?["productVariants"]
                                             [index]
-                                        .price;
+                                        .priceWithVat;
                                 context
                                     .read<ProductProvider>()
                                     .selectedgram(index);
 
                                 setState(() {
+                                  currentItemSelected = index;
                                   productType = widget
                                       .productDetails?["productVariants"][index]
                                       .name;
@@ -193,8 +195,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: SingleChildScrollView(
                     child: RichText(
                       textAlign: TextAlign.justify,
                       text: TextSpan(
@@ -317,15 +318,21 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
                                     CartModel item = CartModel(
                                         productVat: widget
-                                            .productDetails?["productVat"],
-                                        vat: widget
-                                                .productDetails?["productVat"] *
-                                            (context
-                                                    .read<CartProvider>()
-                                                    .myProductPrice *
-                                                context
-                                                    .read<CartProvider>()
-                                                    .qty),
+                                                .productDetails?['productVariants']
+                                                    [currentItemSelected]
+                                                .priceWithVat -
+                                            widget
+                                                .productDetails?['productVariants']
+                                                    [currentItemSelected]
+                                                .price,
+                                        vat:
+                                            widget.productDetails?["productVat"] *
+                                                (context
+                                                        .read<CartProvider>()
+                                                        .myProductPrice *
+                                                    context
+                                                        .read<CartProvider>()
+                                                        .qty),
                                         productId:
                                             '${widget.productDetails?["productId"]}',
                                         itemId: '$productType',
@@ -340,8 +347,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                                 .read<CartProvider>()
                                                 .myProductPrice *
                                             context.read<CartProvider>().qty,
-                                        image: widget
-                                            .productDetails?["productPicture"],
+                                        image: widget.productDetails?["productPicture"],
                                         selectedGram: '');
                                     Provider.of<CartProvider>(context,
                                             listen: false)
