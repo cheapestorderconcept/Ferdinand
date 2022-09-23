@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
-import '../../components/easyloading.dart';
-import '../../components/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+
+import '../../components/easyloading.dart';
+import '../../components/fluttertoast.dart';
 import '../../pages/login/login.dart';
 import '../../utils/network/accesstoken.dart';
 import '../../utils/network/api_request.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PaymentApi {
   Future<String?> initiatePayment(num total, String? promoCode,
@@ -28,14 +29,14 @@ class PaymentApi {
         clientSecret = response.data["data"]["client_secret"];
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-              paymentIntentClientSecret: clientSecret,
-              googlePay: true,
-              applePay: true,
-              customerId: null,
-              style: ThemeMode.dark,
-              merchantDisplayName: "Ferdinand Coffee",
-              currencyCode: "CHF",
-              merchantCountryCode: "US"),
+            paymentIntentClientSecret: clientSecret,
+
+            customerId: null,
+            style: ThemeMode.dark,
+            merchantDisplayName: "Ferdinand Coffee",
+            // currencyCode: "CHF",
+            // merchantCountryCode: "US"
+          ),
         );
       } else {
         Navigator.pushAndRemoveUntil<void>(
