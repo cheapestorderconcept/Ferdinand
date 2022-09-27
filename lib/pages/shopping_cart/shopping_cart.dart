@@ -10,6 +10,7 @@ import '../../components/fluttertoast.dart';
 import '../../provider/shipping_address_provider.dart';
 import '../../services/order/payment.dart';
 import '../../services/order/place_order.dart';
+import '../../utils/helpers/fetch_image.dart';
 
 class ShoppingCart extends StatefulWidget {
   static const routeName = "/cart";
@@ -29,7 +30,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
     final shippingInfo =
         context.read<ShippingAddressProvider>().shippingAddress;
     final items = context.watch<CartProvider>().item;
-
+    final totalQty = context.read<CartProvider>().totalQtyPurchases;
+    final is10x500g = context.read<CartProvider>().is10x500g;
+    final total = context.read<CartProvider>().totalAmount;
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
       appBar: AppBar(
@@ -74,9 +77,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         children: [
                           SizedBox(
                             height: 70,
-                            child: Image.asset(
-                              'assets/images/temp/coffee_pack.png',
-                              scale: 1,
+                            width: 20,
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 10),
+                              child: fetchImage(
+                                  '${Constants.baseUrl}/admin/download-image/${e.image}/${Constants.imageBucket}',
+                                  200,
+                                  200,
+                                  false),
                             ),
                           ),
                           const SizedBox(
@@ -213,28 +221,12 @@ class _ShoppingCartState extends State<ShoppingCart> {
             const PaymentSummary(),
             MainSubmitButton(
               function: () async {
-                final totalQty = context.read<CartProvider>().totalQtyPurchases;
-                final is10x500g = context.read<CartProvider>().is10x500g;
                 if (totalQty >= 2 || is10x500g == true) {
-                  final total = context.read<CartProvider>().totalAmount;
-                  final totalAmountToPay = total < 150
-                      ? Constants.postalCode.contains(shippingInfo?.zipCode)
-                          ? num.parse(context
-                                  .watch<CartProvider>()
-                                  .totalAmount
-                                  .toStringAsFixed(2)) +
-                              8
-                          : context.read<CartProvider>().totalAmount + 0
-                      : num.parse(context
-                              .watch<CartProvider>()
-                              .totalAmount
-                              .toStringAsFixed(2)) +
-                          0;
                   final cartProducts =
                       items.values.map((e) => e.toJson()).toList();
                   PaymentApi paymentApi = PaymentApi();
                   String? clientSecret = await paymentApi.initiatePayment(
-                      totalAmountToPay, discountCode, redeemPoints, context);
+                      total, discountCode, redeemPoints, context);
                   if (clientSecret != null) {
                     PaymentSheet paymentSheet = PaymentSheet();
                     bool paymentSuccessful =
@@ -268,3 +260,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
     );
   }
 }
+
+
+    // final totalAmountToPay = total < 150
+                  //     ? Constants.postalCode.contains(shippingInfo?.zipCode)
+                  //         ? num.parse(context
+                  //                 .watch<CartProvider>()
+                  //                 .totalAmount
+                  //                 .toStringAsFixed(2)) +
+                  //             8
+                  //         : context.read<CartProvider>().totalAmount + 0
+                  //     : num.parse(context
+                  //             .watch<CartProvider>()
+                  //             .totalAmount
+                  //             .toStringAsFixed(2)) +
+                  //         0;
