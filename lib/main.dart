@@ -21,8 +21,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey =
       "pk_live_51JM9SwLWhuTtrTL4r7CSKBJCSTwABzpoUzKW6emJu0J1XV1uSKFIXZtiMA6kKkl397LlpG4XeEbLdAEs3UJONYch00CYz5p6zb";
-  Stripe.merchantIdentifier = 'ferdinandcoffee';
-  await Stripe.instance.applySettings();
+  // Stripe.merchantIdentifier = 'ferdinandcoffee';
+  // await Stripe.instance.applySettings();
   SharedPreferences.getInstance().then((prefs) {
     runApp(MultiProvider(providers: [
       ChangeNotifierProvider(
@@ -85,9 +85,7 @@ class _MyAppState extends State<MyApp> {
             fontFamily: 'Avenir',
             primarySwatch: Colors.brown,
           ),
-          initialRoute: alreadyLoggedIn == true
-              ? HomePage.routeName
-              : LoginPage.routeName,
+          initialRoute: HomePage.routeName,
           darkTheme: ThemeData(),
           builder: EasyLoading.init(),
         ),

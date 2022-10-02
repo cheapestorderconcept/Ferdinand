@@ -55,11 +55,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             )
           ],
         ),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            width: width,
-            height: height,
-            child: Column(
+        body: ListView(
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -194,8 +192,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
+                SizedBox(
+                  width: width,
+                  height: height,
+                  child: Center(
                     child: RichText(
                       textAlign: TextAlign.justify,
                       text: TextSpan(
@@ -207,8 +207,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             TextSpan(
                               text: '${widget.productDetails?["productDesc"]}',
                               style: const TextStyle(
-                                fontSize: 14,
-                              ),
+                                  fontSize: 12, wordSpacing: 2.0),
                             ),
                             TextSpan(
                               text: '${widget.productDetails?["aboutProduct"]}',
@@ -219,6 +218,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ]),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 MainSubmitButton(
                     function: () {
@@ -370,7 +372,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     }),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );
