@@ -14,6 +14,10 @@ class PlaceOrder {
   Future placeOrder(
       List<Map<String, dynamic>> items, BuildContext context) async {
     try {
+      String? token = await AccessToken.getToken();
+      if (token == 'Bearer null') {
+        Navigator.pushNamed(context, LoginPage.routeName);
+      }
       NetworkProvider httpRequest =
           NetworkProvider(authToken: await AccessToken.getToken());
       EasyLoadingIndicator.showProgres();
