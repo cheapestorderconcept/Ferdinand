@@ -59,6 +59,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final currentUser = Provider.of<ProfileProvider>(context).myprofileModel;
+    bool isClient = currentUser?.role == ProfileModel.clientrole ||
+        currentUser?.role == null;
+
     GetAllStoreProduct storeProduct = GetAllStoreProduct();
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
@@ -122,7 +125,8 @@ class _HomePageState extends State<HomePage> {
                           return ProductCard(
                             onTap: () {
                               if (currentUser?.role ==
-                                  ProfileModel.clientrole) {
+                                      ProfileModel.clientrole ||
+                                  currentUser?.role == null) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) {
@@ -241,8 +245,7 @@ class _HomePageState extends State<HomePage> {
                             productPrice:
                                 '${product?[index].productVariants?[0].priceWithVat}',
                             onTap: () {
-                              if (currentUser?.role ==
-                                  ProfileModel.clientrole) {
+                              if (isClient == true) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) {
