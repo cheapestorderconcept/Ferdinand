@@ -76,7 +76,11 @@ class _AddNewAddressState extends State<AddNewAddress> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 25,
-        title: Text(AppLocalizations.of(context)!.addAddress),
+        title: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Text(AppLocalizations.of(context)!.addAddress)),
         actions: const [],
       ),
       resizeToAvoidBottomInset: true,

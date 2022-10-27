@@ -1,6 +1,7 @@
 import 'package:ferdinand_coffee/core/constants.dart';
 import 'package:ferdinand_coffee/model/points_model.dart';
 import 'package:ferdinand_coffee/pages/points-system/task_video.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/services/admin/view_tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -27,21 +28,8 @@ class _AwardPointsPageState extends State<AwardPointsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 25,
-        title: Text(AppLocalizations.of(context)!.awardPoints,
-            style: const TextStyle()),
-        actions: [
-          Image.asset(
-            'assets/icons/logo.png',
-            scale: 6,
-          ),
-          const SizedBox(
-            width: 15,
-          )
-        ],
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.awardPoints,
       ),
       body: FutureBuilder<PointsModel?>(
         future: future,

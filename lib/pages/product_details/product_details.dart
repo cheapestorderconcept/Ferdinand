@@ -51,20 +51,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       },
       child: Scaffold(
           backgroundColor: Constants.scaffoldColor,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leadingWidth: 25,
-            title: Text(AppLocalizations.of(context)!.productDetails),
-            actions: [
-              Image.asset(
-                'assets/icons/logo.png',
-                scale: 6,
-              ),
-              const SizedBox(
-                width: 15,
-              )
-            ],
+          appBar: MyAppBar(
+            title: AppLocalizations.of(context)!.productDetails,
+            image: 'assets/icons/logo.png',
           ),
           body: FutureBuilder<ProductDetailsProvider?>(
               future: future,
@@ -424,6 +413,45 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   );
                 }
               })),
+    );
+  }
+}
+
+class MyAppBar extends StatelessWidget with PreferredSizeWidget {
+  @override
+  final Size preferredSize;
+  const MyAppBar({
+    Key? key,
+    this.preferredSize = const Size(20, 70),
+    this.image,
+    this.bottom,
+    required this.title,
+  }) : super(key: key);
+
+  final PreferredSizeWidget? bottom;
+  final String title;
+  final String? image;
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      bottom: bottom,
+      elevation: 0,
+      leadingWidth: 25,
+      title: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Text(title)),
+      actions: [
+        Image.asset(
+          image ?? 'assets/icons/logo.png',
+          scale: 6,
+        ),
+        const SizedBox(
+          width: 15,
+        )
+      ],
     );
   }
 }
