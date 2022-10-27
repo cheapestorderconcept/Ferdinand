@@ -66,18 +66,23 @@ class _WishListPageState extends State<WishListPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return ProductDetailsPage(
-                            productDetails: {
-                              "productVariants": product?.productVariants,
-                              "productVat": product?.vat,
-                              "productId": product?.sId,
-                              "productPicture": product?.productPictures,
-                              "productName": product?.productName,
-                              "productPrice": product?.productPrice,
-                              "productDesc": product?.productDescription,
-                              "aboutProduct": product?.aboutProduct,
-                            },
-                          );
+                         return ProductDetailsPage(
+                                      productDetails: {
+                                        "productId": product?.sId,
+                                        "productVat": product?.vat,
+                                        "productVariants":
+                                            product?.productVariants,
+                                        "productPicture":
+                                            product?.productPictures,
+                                        "productName":
+                                            product?.productName,
+                                        "productPrice": product?.productVariants?[0].price,
+                                        "productDesc":
+                                            product?.productDescription,
+                                        "aboutProduct":
+                                            product?.aboutProduct,
+                                      },
+                                    );
                         }),
                       );
                     },
