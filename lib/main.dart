@@ -2,20 +2,20 @@ import 'package:ferdinand_coffee/core/routes.dart';
 import 'package:ferdinand_coffee/pages/home/home.dart';
 import 'package:ferdinand_coffee/pages/login/login.dart';
 import 'package:ferdinand_coffee/provider/Favorites_product.dart';
-import 'package:ferdinand_coffee/provider/Product_provider.dart';
 import 'package:ferdinand_coffee/provider/add_product_provider.dart';
 import 'package:ferdinand_coffee/provider/cart.dart';
 import 'package:ferdinand_coffee/provider/product_Details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:ferdinand_coffee/provider/shipping_address_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'provider/product_provider2.dart';
 
 void main() async {

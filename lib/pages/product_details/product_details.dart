@@ -414,7 +414,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   );
                 } else {
-                  return Text('An error occured');
+                  return const Center(
+                    child: Text(
+                      'Produkt nicht gefunden. Prüfe deine Internetverbindung',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
                 }
               })),
     );
