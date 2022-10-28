@@ -33,7 +33,6 @@ class _TaskVideoPageState extends State<TaskVideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text('Task video')),
       backgroundColor: Constants.scaffoldColor,
       body: ListView(children: [
         Center(

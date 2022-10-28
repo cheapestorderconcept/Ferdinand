@@ -36,7 +36,11 @@ class _WishListPageState extends State<WishListPage> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: 25,
-          title: Text(AppLocalizations.of(context)!.myWishlist),
+          title: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Text(AppLocalizations.of(context)!.myWishlist)),
           actions: [
             Image.asset('assets/icons/logo.png'),
             const SizedBox(
@@ -68,14 +72,7 @@ class _WishListPageState extends State<WishListPage> {
                         MaterialPageRoute(builder: (context) {
                           return ProductDetailsPage(
                             productDetails: {
-                              "productVariants": product?.productVariants,
-                              "productVat": product?.vat,
                               "productId": product?.sId,
-                              "productPicture": product?.productPictures,
-                              "productName": product?.productName,
-                              "productPrice": product?.productPrice,
-                              "productDesc": product?.productDescription,
-                              "aboutProduct": product?.aboutProduct,
                             },
                           );
                         }),

@@ -4,6 +4,7 @@ import 'package:ferdinand_coffee/pages/login/login.dart';
 import 'package:ferdinand_coffee/provider/Favorites_product.dart';
 import 'package:ferdinand_coffee/provider/add_product_provider.dart';
 import 'package:ferdinand_coffee/provider/cart.dart';
+import 'package:ferdinand_coffee/provider/product_Details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:ferdinand_coffee/provider/shipping_address_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,9 @@ void main() async {
     runApp(MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (_) => ProfileProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ProductDetailsProvider(),
       ),
       ChangeNotifierProvider(
         create: (_) => CartProvider(),

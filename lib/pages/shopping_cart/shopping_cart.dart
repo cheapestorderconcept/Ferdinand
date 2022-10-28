@@ -150,10 +150,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                   '${e.itemId}';
                             } else {
                               displayToast(
-                                  Colors.red,
-                                  Colors.white,
-                                  AppLocalizations.of(context)!
-                                      .cartRemovalError);
+                                Colors.red,
+                                Colors.white,
+                                AppLocalizations.of(context)!.cartRemovalError,
+                              );
                             }
                           },
                           child: Image.asset(

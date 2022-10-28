@@ -97,29 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Checkbox(
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            checkColor: Constants.greyColor,
-                            value: isChecked,
-                            onChanged: (e) {
-                              setState(() {
-                                isChecked = !isChecked;
-                              });
-                            },
-                            side: const BorderSide(
-                                color: Constants.greyColor, width: 0),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.rememberMe,
-                            style: const TextStyle(
-                                color: Constants.greyColor, fontSize: 10),
-                          ),
-                        ],
-                      ),
                       Text(
                         AppLocalizations.of(context)!.welcome,
                         style: const TextStyle(

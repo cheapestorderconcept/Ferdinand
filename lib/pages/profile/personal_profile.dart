@@ -1,5 +1,6 @@
 import 'package:ferdinand_coffee/components/custominputfield.dart';
 import 'package:ferdinand_coffee/core/constants.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,21 +43,8 @@ class _PersonalProfilePageState extends State<PersonalProfilePage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 25,
-        title: Text(AppLocalizations.of(context)!.personalProfile,
-            style: const TextStyle()),
-        actions: [
-          Image.asset(
-            'assets/icons/logo.png',
-            scale: 6,
-          ),
-          const SizedBox(
-            width: 15,
-          )
-        ],
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.personalProfile,
       ),
       body: SingleChildScrollView(
         child: Container(

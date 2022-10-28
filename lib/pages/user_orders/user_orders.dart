@@ -1,6 +1,7 @@
 import 'package:ferdinand_coffee/core/constants.dart';
 import 'package:ferdinand_coffee/model/profile.dart';
 import 'package:ferdinand_coffee/pages/home/home.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,20 +21,8 @@ class UserOrders extends StatelessWidget {
     GetPlacedOrder fetchOrder = GetPlacedOrder();
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 25,
-        title: Text(AppLocalizations.of(context)!.orderHistory),
-        actions: [
-          Image.asset(
-            'assets/icons/logo.png',
-            scale: 6,
-          ),
-          const SizedBox(
-            width: 15,
-          )
-        ],
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.orderHistory,
       ),
       body: FutureBuilder<ClientOrderModel?>(
           future: fetchOrder.placeOrder(context),

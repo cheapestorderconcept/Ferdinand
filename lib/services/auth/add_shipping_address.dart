@@ -58,7 +58,6 @@ class GetShippingAddress {
           NetworkProvider(authToken: await AccessToken.getToken());
       Response response = await httpRequest.call(
           '/client/view-shipping-info', RequestMethod.get);
-      print(response.data["data"]);
       ShippingAddressModel model =
           ShippingAddressModel.fromJson(response.data["data"]);
       var resProvider =

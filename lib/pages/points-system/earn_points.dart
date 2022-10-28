@@ -1,5 +1,6 @@
 import 'package:ferdinand_coffee/components/mainsubmitbutton.dart';
 import 'package:ferdinand_coffee/core/constants.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/services/auth/upload_task.dart';
 import 'package:ferdinand_coffee/services/images/upload_images.dart';
 import 'package:file_picker/file_picker.dart';
@@ -20,21 +21,8 @@ class _EarnPointsPageState extends State<EarnPointsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 25,
-        title: Text(AppLocalizations.of(context)!.earnPoints,
-            style: const TextStyle()),
-        actions: [
-          Image.asset(
-            'assets/icons/logo.png',
-            scale: 6,
-          ),
-          const SizedBox(
-            width: 15,
-          )
-        ],
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.earnPoints,
       ),
       body: SingleChildScrollView(
         child: Column(

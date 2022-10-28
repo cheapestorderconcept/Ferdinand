@@ -1,4 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:ferdinand_coffee/provider/product_Details.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:provider/provider.dart';
+import '../../components/easyloading.dart';
 import '../../components/fluttertoast.dart';
 import '../../model/flash_sales.dart';
 import '../../model/productlist.dart';
@@ -41,17 +45,24 @@ class FlashSales {
 }
 
 class SingleProductDetails {
-  Future<SingleProductDetailsModel?> fetchProduct(context, productId) async {
-    SingleProductDetailsModel? model;
+  Future<ProductDetailsProvider?> fetchProduct(context, productId) async {
+    ProductDetailsProvider? model;
     try {
+      EasyLoadingIndicator.showProgres();
       NetworkProvider httpRequest = NetworkProvider();
       Response response = await httpRequest.call(
           '/client/view-single-products/$productId', RequestMethod.get);
-      SingleProductDetailsModel flashSalesModel =
-          SingleProductDetailsModel.fromJson(response.data["data"]);
-      model = flashSalesModel;
+      var resProvider =
+          Provider.of<ProductDetailsProvider>(context, listen: false);
+      SingleProductDetailsModel favoritesListModel =
+          SingleProductDetailsModel.fromJson(response.data);
+
+      resProvider.setproductDetails = favoritesListModel;
+      model = resProvider;
     } catch (e) {
       displayToast(Colors.red, Colors.white, '$e');
+    } finally {
+      EasyLoading.dismiss();
     }
     return model;
   }
