@@ -73,14 +73,6 @@ class _WishListPageState extends State<WishListPage> {
                           return ProductDetailsPage(
                             productDetails: {
                               "productId": product?.sId,
-                              "productVat": product?.vat,
-                              "productVariants": product?.productVariants,
-                              "productPicture": product?.productPictures,
-                              "productName": product?.productName,
-                              "productPrice":
-                                  product?.productVariants?[0].price,
-                              "productDesc": product?.productDescription,
-                              "aboutProduct": product?.aboutProduct,
                             },
                           );
                         }),

@@ -69,7 +69,7 @@ class _HelpCenterState extends State<HelpCenter> {
                     height: 15,
                   ),
                   CustomFormField(
-                    maxLines: null,
+                    maxLines: 10,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppLocalizations.of(context)!.yourMessage;

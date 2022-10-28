@@ -75,7 +75,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
                                   child: fetchImage(
-                                      '${Constants.baseUrl}/admin/download-image/${widget.productDetails?["productPicture"]}/${Constants.imageBucket}',
+                                      '${Constants.baseUrl}/admin/download-image/${product?.productPictures}/${Constants.imageBucket}',
                                       200,
                                       200,
                                       false),

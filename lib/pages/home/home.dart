@@ -130,20 +130,6 @@ class _HomePageState extends State<HomePage> {
                                     return ProductDetailsPage(
                                       productDetails: {
                                         "productId": product[index].sId,
-                                        "productVat": product[index].vat,
-                                        "productVariants":
-                                            product[index].productVariants,
-                                        "productPicture":
-                                            product[index].productPictures,
-                                        "productName":
-                                            product[index].productName,
-                                        "productPrice": product[index]
-                                            .productVariants?[0]
-                                            .priceWithVat,
-                                        "productDesc":
-                                            product[index].productDescription,
-                                        "aboutProduct":
-                                            product[index].aboutProduct,
                                       },
                                     );
                                   }),
