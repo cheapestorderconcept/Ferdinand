@@ -198,31 +198,23 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: width,
-                            height: height,
-                            child: Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                    text: 'Beschreibung\n',
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text: '${product?.productDescription}',
-                                        style: const TextStyle(
-                                            fontSize: 12, wordSpacing: 2.0),
+                          Center(
+                            child: RichText(
+                              // textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                  text: 'Beschreibung\n',
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: '${product?.productDescription}',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        wordSpacing: 2.0,
                                       ),
-                                      TextSpan(
-                                        text: '${product?.aboutProduct}',
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      )
-                                    ]),
-                              ),
+                                    ),
+                                  ]),
                             ),
                           ),
                           const SizedBox(

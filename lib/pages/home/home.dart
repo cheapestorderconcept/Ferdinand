@@ -30,6 +30,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../provider/language.dart';
 import '../../services/auth/add_shipping_address.dart';
 import '../../services/images/upload_images.dart';
 import '../../utils/helpers/image_picker.dart';
@@ -635,28 +636,20 @@ class HomeDrawer extends StatelessWidget {
                   bool? isEnglish = prefs.getBool("isEnglish");
                   if (isEnglish == false) {
                     prefs.setBool("isEnglish", true);
-                    displayToast(Constants.greenColor, Colors.white,
-                        "Language set to english. Kindly restart the app");
-                    FlutterSecureStorage storage = const FlutterSecureStorage();
-                    await storage.delete(key: "token");
-                    Navigator.pushAndRemoveUntil<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                          builder: (BuildContext context) => const LoginPage()),
-                      ModalRoute.withName(LoginPage.routeName),
-                    );
+                    Provider.of<LanguangeProvider>(context, listen: false)
+                        .setLanguage(true);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginPage.routeName, (route) => false);
+                    displayToast(
+                        Colors.green, Colors.white, "Please login again");
                   } else {
-                    displayToast(Constants.greenColor, Colors.white,
-                        "Sprache auf Deutsch eingestellt. Bitte starten Sie die App neu");
                     prefs.setBool("isEnglish", false);
-                    FlutterSecureStorage storage = const FlutterSecureStorage();
-                    await storage.delete(key: "token");
-                    Navigator.pushAndRemoveUntil<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                          builder: (BuildContext context) => const LoginPage()),
-                      ModalRoute.withName(LoginPage.routeName),
-                    );
+                    Provider.of<LanguangeProvider>(context, listen: false)
+                        .setLanguage(false);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginPage.routeName, (route) => false);
+                    displayToast(Colors.green, Colors.white,
+                        "Bitte melden Sie sich erneut an");
                   }
                 },
                 child: Text(AppLocalizations.of(context)!.changeLanguage,

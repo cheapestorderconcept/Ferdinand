@@ -4,6 +4,7 @@ import 'package:ferdinand_coffee/pages/login/login.dart';
 import 'package:ferdinand_coffee/provider/Favorites_product.dart';
 import 'package:ferdinand_coffee/provider/add_product_provider.dart';
 import 'package:ferdinand_coffee/provider/cart.dart';
+import 'package:ferdinand_coffee/provider/language.dart';
 import 'package:ferdinand_coffee/provider/product_Details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:ferdinand_coffee/provider/shipping_address_provider.dart';
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     bool? isEnglish = widget.prefs?.getBool("isEnglish");
-    bool? alreadyLoggedIn = widget.prefs?.getBool("loggedIn");
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -66,33 +67,36 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: ((context) => FavoritesProductProvider()),
         ),
+        ChangeNotifierProvider(
+          create: ((context) => LanguangeProvider()),
+        ),
       ],
       child: OverlaySupport.global(
-        child: MaterialApp(
-          routes: routes,
-          debugShowCheckedModeBanner: false,
-          title: 'Ferdinand Coffee',
-          locale: isEnglish == true && isEnglish != null
-              ? const Locale("en")
-              : const Locale("de"),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''), // English, no country code
-            Locale('de', ''), // Spanish, no country code
-          ],
-          theme: ThemeData(
-            fontFamily: 'Avenir',
-            primarySwatch: Colors.brown,
-          ),
-          initialRoute: HomePage.routeName,
-          darkTheme: ThemeData(),
-          builder: EasyLoading.init(),
-        ),
+        child: Consumer<LanguangeProvider>(builder: (context, value, _) {
+          return MaterialApp(
+            routes: routes,
+            debugShowCheckedModeBanner: false,
+            title: 'Ferdinand Coffee',
+            locale: value.isEnglish ? const Locale("en") : const Locale("de"),
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en', ''), // English, no country code
+              Locale('de', ''), // Spanish, no country code
+            ],
+            theme: ThemeData(
+              fontFamily: 'Avenir',
+              primarySwatch: Colors.brown,
+            ),
+            initialRoute: HomePage.routeName,
+            darkTheme: ThemeData(),
+            builder: EasyLoading.init(),
+          );
+        }),
       ),
     );
   }

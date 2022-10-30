@@ -123,19 +123,19 @@ class _ProductAddingPageState extends State<ProductAddingPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  CustomFormField(
-                    maxLines: null,
-                    onChanged: (value) {
-                      aboutProduct = value;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter procuct type';
-                      }
-                      return null;
-                    },
-                    labelText: AppLocalizations.of(context)!.fullProductInfo,
-                  ),
+                  // CustomFormField(
+                  //   maxLines: null,
+                  //   onChanged: (value) {
+                  //     aboutProduct = value;
+                  //   },
+                  //   validator: (value) {
+                  //     if (value!.isEmpty) {
+                  //       return 'Please enter procuct type';
+                  //     }
+                  //     return null;
+                  //   },
+                  //   labelText: AppLocalizations.of(context)!.fullProductInfo,
+                  // ),
                   const SizedBox(height: 15),
                   CustomFormField(
                     onChanged: (v) {

@@ -41,7 +41,7 @@ class MyFavoritesProduct {
       }
     } catch (e) {
       model = null;
-      displayToast(Colors.red, Colors.white, '$e');
+      // displayToast(Colors.red, Colors.white, '$e');
     } finally {
       EasyLoading.dismiss();
     }

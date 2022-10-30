@@ -26,8 +26,7 @@ class PushNotification {
             background: Colors.white);
       }
     } catch (e) {
-      displayToast(Colors.red, Colors.white,
-          'An error occured when creating this notification event');
+      debugPrint(e.toString());
     }
   }
 
@@ -64,9 +63,7 @@ class PushNotification {
             'You have disabled notification for the app. Please enable to get updated notification about our services');
       }
     } catch (e) {
-      print(e);
-      displayToast(Colors.red, Colors.white,
-          'An error occured when creating this notification event');
+        debugPrint(e.toString());
     }
   }
 }

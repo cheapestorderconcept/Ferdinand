@@ -15,7 +15,7 @@ class RecommendedProducts {
           ProductRecommendationModel.fromJson(response.data["data"]);
       productRecommendationModel = model;
     } catch (e) {
-      displayToast(Colors.red, Colors.white, "$e");
+      // displayToast(Colors.red, Colors.white, "$e");
     }
     return productRecommendationModel;
   }

@@ -1,5 +1,7 @@
 import 'package:ferdinand_coffee/components/custominputfield.dart';
+import 'package:ferdinand_coffee/components/fluttertoast.dart';
 import 'package:ferdinand_coffee/core/constants.dart';
+import 'package:ferdinand_coffee/pages/login/login.dart';
 import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/provider/profile_provider.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +151,34 @@ class _PersonalProfilePageState extends State<PersonalProfilePage> {
                   },
                   buttonlabel: AppLocalizations.of(context)!.saveChanges,
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                AppLocalizations.of(context)!.deletionWarning,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              MainSubmitButton(
+                function: () {
+                  displayToast(
+                    Colors.green,
+                    Colors.white,
+                    AppLocalizations.of(context)!.deletionSuccess,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    LoginPage.routeName,
+                    (route) => false,
+                  );
+                },
+                buttonlabel: AppLocalizations.of(context)!.deleteAccount,
+                buttoncolor: Colors.red,
               ),
               Expanded(
                 child: Container(),

@@ -30,8 +30,8 @@ class AddProductToStore {
         "product_variants": productVariants,
         'product_pictures': productPictures,
         'product_description': productDescription,
-        'about_product': aboutProduct,
-        "vat": double.parse("$vat") / 100,
+        'about_product': productName,
+        "vat": vat,
       });
       displayToast(
           Colors.green, Colors.white, 'Product successfully added to store');

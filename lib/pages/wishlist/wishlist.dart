@@ -83,7 +83,7 @@ class _WishListPageState extends State<WishListPage> {
                       productName: fav?[index].product?.productName,
                       productPicture: fav?[index].product?.productPictures,
                       productPrice:
-                          fav?[index].product?.productVariants?[0].price,
+                          fav?[index].product?.productVariants?[0].priceWithVat,
                     ),
                   );
                 },
