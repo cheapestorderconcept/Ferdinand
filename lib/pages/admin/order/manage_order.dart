@@ -1,4 +1,5 @@
 import 'package:ferdinand_coffee/core/constants.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/services/admin/update_order.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,6 +26,7 @@ class _ManageOrderPageState extends State<ManageOrderPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      appBar: MyAppBar(title: AppLocalizations.of(context)!.updateOrder),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,

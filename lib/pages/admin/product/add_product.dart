@@ -4,6 +4,7 @@ import 'package:ferdinand_coffee/components/form.dart';
 import 'package:ferdinand_coffee/components/mainsubmitbutton.dart';
 import 'package:ferdinand_coffee/core/constants.dart';
 import 'package:ferdinand_coffee/model/productlist.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:ferdinand_coffee/provider/add_product_provider.dart';
 import 'package:ferdinand_coffee/services/admin/add_product.dart';
 import 'package:ferdinand_coffee/utils/helpers/fetch_image.dart';
@@ -44,6 +45,7 @@ class _ProductAddingPageState extends State<ProductAddingPage> {
         context.watch<AddProductProviderAdmin>().productVariants;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: MyAppBar(title: AppLocalizations.of(context)!.addProduct),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,

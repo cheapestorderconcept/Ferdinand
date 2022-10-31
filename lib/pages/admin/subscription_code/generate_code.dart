@@ -1,4 +1,5 @@
 import 'package:ferdinand_coffee/core/constants.dart';
+import 'package:ferdinand_coffee/pages/product_details/product_details.dart';
 import 'package:flutter/material.dart';
 import '../../../components/form.dart';
 import '../../../services/admin/generate_discount_code.dart';
@@ -21,6 +22,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      appBar: const MyAppBar(title: 'Code generieren'),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,

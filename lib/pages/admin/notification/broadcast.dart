@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../components/form.dart';
 import '../../../services/admin/send_notification.dart';
+import '../../product_details/product_details.dart';
 
 class SendNotificationPage extends StatefulWidget {
   static const routeName = "/notification-sender";
@@ -22,6 +23,7 @@ class _SendNotificationPageState extends State<SendNotificationPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      appBar: MyAppBar(title: AppLocalizations.of(context)!.sendNotification),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,
