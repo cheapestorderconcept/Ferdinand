@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/form.dart';
+import '../product_details/product_details.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   static const routeName = "/chnage-password";
@@ -24,6 +25,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.changePassword,
+      ),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../services/auth/support.dart';
+import '../product_details/product_details.dart';
 
 String? emailSubject;
 
@@ -25,6 +26,9 @@ class _HelpCenterState extends State<HelpCenter> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.contactSupport,
+      ),
       backgroundColor: Constants.primaryColor,
       body: Form(
         key: _formKey,
